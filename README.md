@@ -1,7 +1,6 @@
 # Rust `clippy-check` Action
 
 ![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)
-[![Gitter](https://badges.gitter.im/actions-rs/community.svg)](https://gitter.im/actions-rs/community)
 
 > Clippy lints in your Pull Requests
 
@@ -23,12 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-rs/toolchain@v1
+      - uses: xmc-rs/toolchain@v1
         with:
             toolchain: nightly
             components: clippy
             override: true
-      - uses: actions-rs/clippy-check@v1
+      - uses: xmc-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features
@@ -45,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: rustup component add clippy
-      - uses: actions-rs/clippy-check@v1
+      - uses: xmc-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features
@@ -62,7 +61,7 @@ jobs:
 | `name`      |          | Name of the created GitHub check. If running this action multiple times, each run must have a unique name.                             | string | clippy  |
 
 For extra details about the `toolchain`, `args` and `use-cross` inputs,
-see [`cargo` Action](https://github.com/actions-rs/cargo#inputs) documentation.
+see [`cargo` Action](https://github.com/xmc-rs/cargo#inputs) documentation.
 
 **NOTE**: if your workflow contains multiple instances of the `clippy-check` action you will need to give each invocation a unique name, using the `name` property described above.
 Check runs must have a unique name, and this prevents a later check run overriding a previous one within the same workflow.
